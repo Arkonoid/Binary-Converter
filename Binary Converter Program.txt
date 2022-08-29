@@ -1,0 +1,74 @@
+﻿using System;
+
+
+public class BinaryConverter
+{
+    public static void Main(string[] args)
+    {
+        bool endProgram = false;
+        
+        while(!endProgram)
+        {
+            Console.Write("Enter a number between 0 and 31 (inclusive) to convert to binary: ");
+            int numberToConvert = Convert.ToInt16(Console.ReadLine());
+            
+            if (numberToConvert >= 32)
+            {
+                Console.WriteLine("Number is too high. Try again...\n\n");
+            }
+            else
+            {
+                int sixteenPlace = 0;
+                int eightPlace = 0;
+                int fourPlace = 0;
+                int twoPlace = 0;
+                int onePlace = 0;
+            
+                int binaryDivider = 16;
+            
+                for (int j = 0; j < 5; j++)
+                {
+                    var placeholder = 0;
+                
+                    if(numberToConvert / binaryDivider >= 1)
+                    {
+                        numberToConvert -= binaryDivider;
+                        placeholder = 1;
+                    }
+                
+                    switch(binaryDivider)
+                    {
+                        case 16:
+                        sixteenPlace = placeholder;
+                        break;
+                        case 8:
+                        eightPlace = placeholder;
+                        break;
+                        case 4:
+                        fourPlace = placeholder;
+                        break;
+                        case 2:
+                        twoPlace = placeholder;
+                        break;
+                        case 1:
+                        onePlace = placeholder;
+                        break;
+                    }
+                
+                    binaryDivider /= 2;
+                }
+                
+                Console.WriteLine("The number in binary is: "+sixteenPlace+eightPlace+fourPlace+twoPlace+onePlace);
+                
+                Console.Write("\n\nPress 'x' to end the program, or anything else to continue... ");
+                
+                var exit = Console.ReadLine();
+                
+                if (exit.Contains('x'))
+                {
+                    endProgram = true;
+                }
+            }
+        }
+    }
+}
